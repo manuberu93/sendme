@@ -324,12 +324,7 @@ export default function Home() {
         color: '#666',
         fontSize: '14px'
       }}>
-        <p>Startti Email Sender - Aplicación Genérica</p>
-        <p>
-          <a href="https://startti.ai" style={{ color: '#0e0e0eff' }}>
-            startti.ai
-          </a>
-        </p>
+        
       </div>
     </div>
   );

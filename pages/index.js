@@ -8,15 +8,23 @@ export default function Home() {
     senderEmail: 'manuel@startti.co',
     senderName: 'Manuel - Startti',
     linkedinUrl: 'https://www.linkedin.com/in/manuel-bedoya-9a1727187',
-    gmailApiKey: ''
+    gmailApiKey: '',
+    // Checkboxes para secciones opcionales
+    showTeam: false,
+    showCasosExito: false,
+    showSalud: false,
+    showAgricultura: false,
+    showComputerVision: false,
+    showAnalytica: false
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
@@ -69,9 +77,31 @@ export default function Home() {
           style={{ height: '50px', marginBottom: '20px' }}
         />
         <h1 style={{ color: '#0e0e0eff', fontSize: '32px', fontWeight: '600' }}>
-          Startti Email Sender
+          Startti Email Sender - Clientes
         </h1>
-        
+        <p style={{ color: '#666', fontSize: '18px' }}>
+          Envía emails personalizados con el template de Startti
+        </p>
+        <div style={{ marginTop: '20px' }}>
+          <span style={{ 
+            backgroundColor: '#0e0e0eff',
+            color: '#ffffff',
+            padding: '8px 16px',
+            borderRadius: '6px',
+            marginRight: '16px'
+          }}>
+            Email Clientes
+          </span>
+          <a href="/developers" style={{ 
+            color: '#0e0e0eff', 
+            textDecoration: 'none',
+            backgroundColor: '#f8f9fa',
+            padding: '8px 16px',
+            borderRadius: '6px'
+          }}>
+            Email Desarrolladores →
+          </a>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} style={{ 
@@ -193,6 +223,124 @@ export default function Home() {
           <small style={{ color: '#666', fontSize: '14px' }}>
             Genera tu App Password en: <a href="https://myaccount.google.com/apppasswords" target="_blank" style={{color: '#0e0e0eff'}}>myaccount.google.com/apppasswords</a>
           </small>
+        </div>
+
+        <hr style={{ margin: '32px 0', border: '1px solid #f3f4f6' }} />
+
+        <h3 style={{ color: '#0e0e0eff', marginBottom: '24px', fontSize: '20px' }}>
+          Secciones Opcionales a Mostrar
+        </h3>
+
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1fr 1fr', 
+          gap: '16px', 
+          marginBottom: '32px',
+          padding: '20px',
+          backgroundColor: '#f8f9fa',
+          borderRadius: '8px'
+        }}>
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#0e0e0eff'
+          }}>
+            <input
+              type="checkbox"
+              name="showTeam"
+              checked={formData.showTeam}
+              onChange={handleChange}
+              style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+            />
+            Mostrar Equipo
+          </label>
+
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#0e0e0eff'
+          }}>
+            <input
+              type="checkbox"
+              name="showCasosExito"
+              checked={formData.showCasosExito}
+              onChange={handleChange}
+              style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+            />
+            Casos de Éxito
+          </label>
+
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#0e0e0eff'
+          }}>
+            <input
+              type="checkbox"
+              name="showSalud"
+              checked={formData.showSalud}
+              onChange={handleChange}
+              style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+            />
+            Experiencia en Salud
+          </label>
+
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#0e0e0eff'
+          }}>
+            <input
+              type="checkbox"
+              name="showAgricultura"
+              checked={formData.showAgricultura}
+              onChange={handleChange}
+              style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+            />
+            Agricultura Inteligente
+          </label>
+
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#0e0e0eff'
+          }}>
+            <input
+              type="checkbox"
+              name="showComputerVision"
+              checked={formData.showComputerVision}
+              onChange={handleChange}
+              style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+            />
+            Computer Vision
+          </label>
+
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#0e0e0eff'
+          }}>
+            <input
+              type="checkbox"
+              name="showAnalytica"
+              checked={formData.showAnalytica}
+              onChange={handleChange}
+              style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+            />
+            IA + Analítica de Datos
+          </label>
         </div>
 
         <hr style={{ margin: '32px 0', border: '1px solid #f3f4f6' }} />
@@ -324,7 +472,12 @@ export default function Home() {
         color: '#666',
         fontSize: '14px'
       }}>
-        
+        <p>Startti Email Sender - Clientes</p>
+        <p>
+          <a href="https://startti.ai" style={{ color: '#0e0e0eff' }}>
+            startti.ai
+          </a>
+        </p>
       </div>
     </div>
   );

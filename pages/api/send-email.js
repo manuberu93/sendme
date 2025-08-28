@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 // Template HTML dinámico
 const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl) => {

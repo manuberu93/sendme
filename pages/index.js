@@ -4,6 +4,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
+    asunto: 'Startti: Agentes IA Autónomos para tu empresa',
     cuerpo: '',
     senderEmail: 'manuel@startti.co',
     senderName: 'Manuel - Startti',
@@ -403,6 +404,33 @@ export default function Home() {
           />
         </div>
 
+        <div style={{ marginBottom: '24px' }}>
+          <label style={{ 
+            display: 'block', 
+            marginBottom: '8px',
+            fontWeight: '600',
+            color: '#0e0e0eff'
+          }}>
+            Asunto del Email:
+          </label>
+          <input
+            type="text"
+            name="asunto"
+            value={formData.asunto}
+            onChange={handleChange}
+            required
+            placeholder="Ej: Startti: Agentes IA para tu empresa"
+            style={{ 
+              width: '100%',
+              padding: '12px',
+              border: '2px solid #e5e7eb',
+              borderRadius: '8px',
+              fontSize: '16px',
+              boxSizing: 'border-box'
+            }}
+          />
+        </div>
+
         <div style={{ marginBottom: '32px' }}>
           <label style={{ 
             display: 'block', 
@@ -430,6 +458,23 @@ export default function Home() {
               boxSizing: 'border-box'
             }}
           />
+          <div style={{ 
+            marginTop: '8px', 
+            padding: '12px', 
+            backgroundColor: '#f8f9fa', 
+            borderRadius: '6px',
+            fontSize: '14px',
+            color: '#666'
+          }}>
+            <strong>Markdown soportado:</strong> 
+            <code>**negrita**</code>, 
+            <code>*cursiva*</code>, 
+            <code>[enlace](url)</code>, 
+            <code>- listas</code>, 
+            <code># títulos</code>
+            <br />
+            <em>También puedes pegar HTML directamente si copias desde un email.</em>
+          </div>
         </div>
 
         <button

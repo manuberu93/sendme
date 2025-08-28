@@ -68,12 +68,8 @@ export default function Developers() {
           alt="Startti Logo" 
           style={{ height: '50px', marginBottom: '20px' }}
         />
-        <h1 style={{ color: '#0e0e0eff', fontSize: '32px', fontWeight: '600' }}>
-          Startti Email Sender - Desarrolladores
-        </h1>
-        <p style={{ color: '#666', fontSize: '18px' }}>
-          Envía emails mostrando nuestro equipo de desarrolladores expertos
-        </p>
+        
+        
         <div style={{ marginTop: '20px' }}>
           <a href="/" style={{ 
             color: '#0e0e0eff', 
@@ -346,12 +342,7 @@ export default function Developers() {
         color: '#666',
         fontSize: '14px'
       }}>
-        <p>Startti Email Sender - Desarrolladores</p>
-        <p>
-          <a href="https://startti.ai" style={{ color: '#0e0e0eff' }}>
-            startti.ai
-          </a>
-        </p>
+        
       </div>
     </div>
   );

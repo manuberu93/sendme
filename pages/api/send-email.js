@@ -1,5 +1,45 @@
 import nodemailer from 'nodemailer';
 
+// Función para convertir markdown básico a HTML o pasar HTML directamente
+const processContent = (text) => {
+  // Si ya contiene HTML, lo devolvemos tal como está
+  if (text.includes('<') && text.includes('>')) {
+    return text;
+  }
+  
+  // Si no, procesamos como markdown
+  let html = text;
+  
+  // Títulos
+  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+  
+  // Negritas
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
+  
+  // Cursivas
+  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+  
+  // Enlaces
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color: #0e0e0eff; text-decoration: underline;">$1</a>');
+  
+  // Listas
+  html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
+  html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+  
+  // Código inline
+  html = html.replace(/`([^`]+)`/g, '<code style="background: #f1f1f1; padding: 2px 4px; border-radius: 3px; font-family: monospace;">$1</code>');
+  
+  // Saltos de línea
+  html = html.replace(/\n/g, '<br>');
+  
+  return html;
+};
+
 // Template HTML dinámico con secciones opcionales
 const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, options) => {
   const { showTeam, showCasosExito, showSalud, showAgricultura, showComputerVision, showAnalytica } = options;
@@ -63,6 +103,50 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
         .content-body {
             margin: 32px 0;
             font-size: 19px;
+        }
+        .content-body h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0e0e0eff;
+            margin: 24px 0 16px 0;
+        }
+        .content-body h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0e0e0eff;
+            margin: 20px 0 12px 0;
+        }
+        .content-body h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0e0e0eff;
+            margin: 16px 0 8px 0;
+        }
+        .content-body ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        .content-body li {
+            margin-bottom: 8px;
+            font-size: 19px;
+        }
+        .content-body code {
+            background: #f1f1f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+        .content-body strong {
+            font-weight: 700;
+            color: #0e0e0eff;
+        }
+        .content-body em {
+            font-style: italic;
+        }
+        .content-body a {
+            color: #0e0e0eff;
+            text-decoration: underline;
         }
         .section {
             background: #ffffff;
@@ -187,7 +271,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
         <h2>Hola ${nombre},</h2>
         
         <div class="content-body">
-            ${cuerpo.replace(/\n/g, '<br>')}
+            ${processContent(cuerpo)}
         </div>
 
         ${showTeam ? `
@@ -241,7 +325,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Suprokom</h4>
                         <div class="subtitle">Sector Ferretero</div>
-                         <p>Impacto: +85% eficiencia operativa</p>
+                        <p>Impacto: +85% eficiencia operativa</p>
                     </div>
                 </div>
                 
@@ -250,7 +334,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Maven</h4>
                         <div class="subtitle">E-commerce - Make up</div>
-                        <p> Impacto: 80% incremento en ventas</p>
+                        <p>Impacto: 80% incremento en ventas</p>
                     </div>
                 </div>
                 
@@ -259,7 +343,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Escappy</h4>
                         <div class="subtitle">Turismo</div>
-                        <p> Impacto: +80% eficiencia operativa</p>
+                        <p>Impacto: +80% eficiencia operativa</p>
                     </div>
                 </div>
                 
@@ -268,7 +352,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Sumatec</h4>
                         <div class="subtitle">Retail</div>
-                        <p> Impacto: Automatización de data para toma de decisiones</p>
+                        <p>Impacto: Automatización de data para toma de decisiones</p>
                     </div>
                 </div>
                 
@@ -277,7 +361,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Aguas de Manizales</h4>
                         <div class="subtitle">Gobierno</div>
-                        <p>Impacto: +80% eficiencia operativa</p>
+                        <p>Onboarding: $75M COP | Ticket: $2.3M COP/mes | Impacto: +80% eficiencia operativa</p>
                     </div>
                 </div>
                 
@@ -286,7 +370,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Alcaldía de Manizales</h4>
                         <div class="subtitle">Smart Cities</div>
-                        <p>Impacto: Automatización de procesos para toma de decisiones acelerada</p>
+                        <p>Onboarding: $48M COP | Ticket: $2.5M COP/mes | Impacto: Automatización de procesos para toma de decisiones acelerada</p>
                     </div>
                 </div>
             </div>
@@ -473,11 +557,11 @@ export default async function handler(req, res) {
   }
 
   const { 
-    nombre, email, cuerpo, senderEmail, senderName, linkedinUrl, gmailApiKey,
+    nombre, email, asunto, cuerpo, senderEmail, senderName, linkedinUrl, gmailApiKey,
     showTeam, showCasosExito, showSalud, showAgricultura, showComputerVision, showAnalytica 
   } = req.body;
 
-  if (!nombre || !email || !cuerpo || !senderEmail || !senderName || !linkedinUrl || !gmailApiKey) {
+  if (!nombre || !email || !asunto || !cuerpo || !senderEmail || !senderName || !linkedinUrl || !gmailApiKey) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
@@ -499,7 +583,7 @@ export default async function handler(req, res) {
         address: senderEmail
       },
       to: email,
-      subject: `Startti: Agentes IA Autónomos para tu empresa`,
+      subject: asunto,
       html: emailHtml,
       headers: {
         'X-Priority': '2',

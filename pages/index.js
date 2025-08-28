@@ -80,9 +80,7 @@ export default function Home() {
         <h1 style={{ color: '#0e0e0eff', fontSize: '32px', fontWeight: '600' }}>
           Startti Email Sender - Clientes
         </h1>
-        <p style={{ color: '#666', fontSize: '18px' }}>
-          Envía emails personalizados con el template de Startti
-        </p>
+       
         <div style={{ marginTop: '20px' }}>
           <span style={{ 
             backgroundColor: '#0e0e0eff',
@@ -517,12 +515,7 @@ export default function Home() {
         color: '#666',
         fontSize: '14px'
       }}>
-        <p>Startti Email Sender - Clientes</p>
-        <p>
-          <a href="https://startti.ai" style={{ color: '#0e0e0eff' }}>
-            startti.ai
-          </a>
-        </p>
+        
       </div>
     </div>
   );

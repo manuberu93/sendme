@@ -357,11 +357,11 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                 </div>
                 
                 <div class="card-with-image">
-                    <img src="https://i.imgur.com/0qS0nS3.png" alt="Aguas de Manizales" class="card-image" />
+                    <img src="https://i.imgur.com/yn5Ct92.png" alt="Aguas de Manizales" class="card-image" />
                     <div class="card-info">
                         <h4>Aguas de Manizales</h4>
                         <div class="subtitle">Gobierno</div>
-                        <p>Onboarding: $75M COP | Ticket: $2.3M COP/mes | Impacto: +80% eficiencia operativa</p>
+                        <p> Impacto: +80% eficiencia operativa</p>
                     </div>
                 </div>
                 
@@ -370,7 +370,7 @@ const getEmailTemplate = (nombre, cuerpo, senderName, senderEmail, linkedinUrl, 
                     <div class="card-info">
                         <h4>Alcaldía de Manizales</h4>
                         <div class="subtitle">Smart Cities</div>
-                        <p>Onboarding: $48M COP | Ticket: $2.5M COP/mes | Impacto: Automatización de procesos para toma de decisiones acelerada</p>
+                        <p>Impacto: Automatización de procesos para toma de decisiones acelerada</p>
                     </div>
                 </div>
             </div>
